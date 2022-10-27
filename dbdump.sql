@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 27/10/2022 14:45:06
+ Date: 27/10/2022 16:01:06
 */
 
 SET NAMES utf8mb4;
@@ -198,12 +198,12 @@ COMMIT;
 DROP TABLE IF EXISTS `Rezept`;
 CREATE TABLE `Rezept` (
   `RezeptID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `rzID` int NOT NULL,
   `reID` int NOT NULL,
   `rbID` int NOT NULL,
   PRIMARY KEY (`RezeptID`,`rzID`,`reID`,`rbID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of Rezept
@@ -220,7 +220,7 @@ CREATE TABLE `RezeptBeschränkungen` (
   `rbID` int NOT NULL,
   `BeschränkungsID` int NOT NULL,
   PRIMARY KEY (`rbID`,`BeschränkungsID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of RezeptBeschränkungen
@@ -236,7 +236,7 @@ CREATE TABLE `RezeptErnährungskategorie` (
   `reID` int NOT NULL,
   `ErnährungskategorieID` int NOT NULL,
   PRIMARY KEY (`reID`,`ErnährungskategorieID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of RezeptErnährungskategorie
@@ -255,7 +255,7 @@ CREATE TABLE `RezeptZutat` (
   `zutatID` int NOT NULL,
   `menge` int DEFAULT NULL,
   PRIMARY KEY (`rzID`,`zutatID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of RezeptZutat
@@ -273,8 +273,8 @@ COMMIT;
 DROP TABLE IF EXISTS `ZUTAT`;
 CREATE TABLE `ZUTAT` (
   `ZUTATENNR` int NOT NULL,
-  `BEZEICHNUNG` varchar(50) DEFAULT NULL,
-  `EINHEIT` varchar(25) DEFAULT NULL,
+  `BEZEICHNUNG` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `EINHEIT` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `NETTOPREIS` decimal(10,2) DEFAULT NULL,
   `BESTAND` int DEFAULT NULL,
   `LIEFERANT` int DEFAULT NULL,
@@ -284,7 +284,7 @@ CREATE TABLE `ZUTAT` (
   PRIMARY KEY (`ZUTATENNR`),
   KEY `LIEFERANT` (`LIEFERANT`),
   CONSTRAINT `zutat_ibfk_1` FOREIGN KEY (`LIEFERANT`) REFERENCES `LIEFERANT` (`LIEFERANTENNR`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of ZUTAT
