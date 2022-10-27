@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 27/10/2022 13:11:22
+ Date: 27/10/2022 14:45:06
 */
 
 SET NAMES utf8mb4;
@@ -23,9 +23,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `Beschränkung`;
 CREATE TABLE `Beschränkung` (
   `BeschränkungsID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`BeschränkungsID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of Beschränkung
@@ -51,7 +51,7 @@ CREATE TABLE `BESTELLUNG` (
   PRIMARY KEY (`BESTELLNR`,`RezeptID`) USING BTREE,
   KEY `KUNDENNR` (`KUNDENNR`),
   CONSTRAINT `bestellung_ibfk_1` FOREIGN KEY (`KUNDENNR`) REFERENCES `KUNDE` (`KUNDENNR`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of BESTELLUNG
@@ -79,7 +79,7 @@ CREATE TABLE `BESTELLUNGZUTAT` (
   `BESTELLNR` int NOT NULL,
   `ZUTATENNR` int DEFAULT NULL,
   `MENGE` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of BESTELLUNGZUTAT
@@ -119,9 +119,9 @@ COMMIT;
 DROP TABLE IF EXISTS `Ernährungskategorie`;
 CREATE TABLE `Ernährungskategorie` (
   `ErnährungskategorieID` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`ErnährungskategorieID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of Ernährungskategorie
@@ -140,17 +140,17 @@ COMMIT;
 DROP TABLE IF EXISTS `KUNDE`;
 CREATE TABLE `KUNDE` (
   `KUNDENNR` int NOT NULL,
-  `NACHNAME` varchar(50) DEFAULT NULL,
-  `VORNAME` varchar(50) DEFAULT NULL,
+  `NACHNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `VORNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `GEBURTSDATUM` date DEFAULT NULL,
-  `STRASSE` varchar(50) DEFAULT NULL,
-  `HAUSNR` varchar(6) DEFAULT NULL,
-  `PLZ` varchar(5) DEFAULT NULL,
-  `ORT` varchar(50) DEFAULT NULL,
-  `TELEFON` varchar(25) DEFAULT NULL,
-  `EMAIL` varchar(50) DEFAULT NULL,
+  `STRASSE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `HAUSNR` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `PLZ` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ORT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `TELEFON` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `EMAIL` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`KUNDENNR`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of KUNDE
@@ -173,15 +173,15 @@ COMMIT;
 DROP TABLE IF EXISTS `LIEFERANT`;
 CREATE TABLE `LIEFERANT` (
   `LIEFERANTENNR` int NOT NULL,
-  `LIEFERANTENNAME` varchar(50) DEFAULT NULL,
-  `STRASSE` varchar(50) DEFAULT NULL,
-  `HAUSNR` varchar(6) DEFAULT NULL,
-  `PLZ` varchar(5) DEFAULT NULL,
-  `ORT` varchar(50) DEFAULT NULL,
-  `TELEFON` varchar(25) DEFAULT NULL,
-  `EMAIL` varchar(50) DEFAULT NULL,
+  `LIEFERANTENNAME` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `STRASSE` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `HAUSNR` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `PLZ` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ORT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `TELEFON` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `EMAIL` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`LIEFERANTENNR`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of LIEFERANT
