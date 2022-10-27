@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 27/10/2022 12:49:00
+ Date: 27/10/2022 13:11:22
 */
 
 SET NAMES utf8mb4;
@@ -22,15 +22,20 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `Beschränkung`;
 CREATE TABLE `Beschränkung` (
-  `BeschränkungsID` int NOT NULL,
+  `BeschränkungsID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`BeschränkungsID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of Beschränkung
 -- ----------------------------
 BEGIN;
+INSERT INTO `Beschränkung` (`BeschränkungsID`, `Name`) VALUES (1, 'Laktose');
+INSERT INTO `Beschränkung` (`BeschränkungsID`, `Name`) VALUES (2, 'Gluten');
+INSERT INTO `Beschränkung` (`BeschränkungsID`, `Name`) VALUES (3, 'Erdnuss');
+INSERT INTO `Beschränkung` (`BeschränkungsID`, `Name`) VALUES (4, 'Ei');
+INSERT INTO `Beschränkung` (`BeschränkungsID`, `Name`) VALUES (5, 'Tomate');
 COMMIT;
 
 -- ----------------------------
@@ -113,15 +118,20 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `Ernährungskategorie`;
 CREATE TABLE `Ernährungskategorie` (
-  `ErnährungskategorieID` int NOT NULL,
+  `ErnährungskategorieID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ErnährungskategorieID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of Ernährungskategorie
 -- ----------------------------
 BEGIN;
+INSERT INTO `Ernährungskategorie` (`ErnährungskategorieID`, `Name`) VALUES (1, 'Vegan');
+INSERT INTO `Ernährungskategorie` (`ErnährungskategorieID`, `Name`) VALUES (2, 'Vegetarisch');
+INSERT INTO `Ernährungskategorie` (`ErnährungskategorieID`, `Name`) VALUES (3, 'Frutarisch');
+INSERT INTO `Ernährungskategorie` (`ErnährungskategorieID`, `Name`) VALUES (4, 'Low Carb');
+INSERT INTO `Ernährungskategorie` (`ErnährungskategorieID`, `Name`) VALUES (5, 'High Protein');
 COMMIT;
 
 -- ----------------------------
@@ -193,12 +203,13 @@ CREATE TABLE `Rezept` (
   `reID` int NOT NULL,
   `rbID` int NOT NULL,
   PRIMARY KEY (`RezeptID`,`rzID`,`reID`,`rbID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Records of Rezept
 -- ----------------------------
 BEGIN;
+INSERT INTO `Rezept` (`RezeptID`, `Name`, `rzID`, `reID`, `rbID`) VALUES (1, 'Gemüse Box', 1, 1, 1);
 COMMIT;
 
 -- ----------------------------
@@ -231,6 +242,8 @@ CREATE TABLE `RezeptErnährungskategorie` (
 -- Records of RezeptErnährungskategorie
 -- ----------------------------
 BEGIN;
+INSERT INTO `RezeptErnährungskategorie` (`reID`, `ErnährungskategorieID`) VALUES (1, 1);
+INSERT INTO `RezeptErnährungskategorie` (`reID`, `ErnährungskategorieID`) VALUES (1, 2);
 COMMIT;
 
 -- ----------------------------
@@ -248,6 +261,10 @@ CREATE TABLE `RezeptZutat` (
 -- Records of RezeptZutat
 -- ----------------------------
 BEGIN;
+INSERT INTO `RezeptZutat` (`rzID`, `zutatID`, `menge`) VALUES (1, 1001, 5);
+INSERT INTO `RezeptZutat` (`rzID`, `zutatID`, `menge`) VALUES (1, 1002, 3);
+INSERT INTO `RezeptZutat` (`rzID`, `zutatID`, `menge`) VALUES (1, 1004, 3);
+INSERT INTO `RezeptZutat` (`rzID`, `zutatID`, `menge`) VALUES (1, 1006, 2);
 COMMIT;
 
 -- ----------------------------
