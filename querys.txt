@@ -66,6 +66,16 @@ Group by R.Name
 
 
 
+[Task] Query. Auswahl aller Rezepte, die eine bestimmte Kalorienmenge nicht überschreiten: MUSS NOCH GEÄNDERT SEIN!
+Select 
+R.Name,
+CASE WHEN Z.KALORIEN < 300 Then "300 kalorien nicht überschritten"
+ELSE NULL
+END
+from rezept					R 
+JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
+JOIN zutat 		        Z  ON RZ.zutatID = Z.zutatID
+Group by R.Name, Z.KALORIEN
 
 
 
