@@ -1,1 +1,7 @@
 Querys hier.
+[Task] Query. Auswahl aller Zutaten eines Rezeptes nach Rezeptname:
+Select R.Name,
+	   Z.BEZEICHNUNG
+from rezept 	R
+JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
+JOIN zutat 				Z  ON RZ.zutatID = Z.zutatID
