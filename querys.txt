@@ -1,7 +1,63 @@
 Querys hier.
 [Task] Query. Auswahl aller Zutaten eines Rezeptes nach Rezeptname:
 Select R.Name,
-	   Z.BEZEICHNUNG
-from rezept 	R
+       Z.BEZEICHNUNG
+from rezept 	                R
 JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
-JOIN zutat 				Z  ON RZ.zutatID = Z.zutatID
+JOIN zutat 		        Z  ON RZ.zutatID = Z.zutatID
+
+
+[TASK]Query. Auswahl von Rezepten entsprechend vorgegebener Ernährungskategorien:
+Select  R.Name,
+	EK.Name
+from rezept 					R
+JOIN rezepternährungskategorie		    	REK ON REK.reID = R.RezeptID
+JOIN ernährungskategorie			EK	ON REK.ErnährungskategorieID = EK.ErnährungskategorieID
+
+[Task] Query. Auswahl aller Rezepte einer bestimmten Ernährungskategorie:
+Select  R.Name,
+	EK.Name
+from rezept 				R
+JOIN rezepternährungskategorie		REK ON REK.reID = R.RezeptID
+JOIN ernährungskategorie		EK	ON REK.ErnährungskategorieID = EK.ErnährungskategorieID
+Where EK.Name LIKE "Vegan"
+
+
+[Task] Query. Berechnung der durchschnittlichen Nährwerte aller Bestellungen eines Kunden:
+Select K.NACHNAME,
+	   AVG(Z.KALORIEN) AS "Durchschnittliche Kalorien",
+       	   AVG(Z.KOHLENHYDRATE) AS "Durchschnittliche Kohlenhydrate",
+           AVG(Z.PROTEIN) AS "Durchschnittliche Protein"
+from kunde			k
+JOIN bestellung			b ON B.KUNDENNR = K.KUNDENNR
+JOIN rezept			R ON R.RezeptID = B.RezeptID
+JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
+JOIN zutat 		        Z  ON RZ.zutatID = Z.zutatID
+Group by K.NACHNAME
+
+
+[Task] Query. Auswahl aller Rezepte, die eine gewisse Zutat enthalten:
+Select R.Name,
+       Z.BEZEICHNUNG
+from rezept 	                R
+JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
+JOIN zutat 		        Z  ON RZ.zutatID = Z.zutatID
+Where Z.BEZEICHNUNG LIKE "Tomate"
+
+[Task] Query. Auswahl aller Zutaten, die bisher keinem Rezept zugeordnet sind:
+Select R.Name,
+       Z.BEZEICHNUNG
+from rezept 	        	R
+LEFT JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
+LEFT JOIN zutat 		Z  ON RZ.zutatID = Z.zutatID
+Where Z.BEZEICHNUNG IS NULL
+
+
+
+
+
+
+
+
+
+
