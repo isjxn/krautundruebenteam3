@@ -98,6 +98,23 @@ Select *
 From kunde
 
 
+[Task] Query. Auswahl bzw. Ausschluss von Rezepten auf Basis von Beschränkungen:
+Select R.Name,
+       B.Name
+From rezept 				R
+JOIN rezeptbeschränkungen		RB ON R.RezeptID = RB.rbID
+JOIN beschränkung			B  ON B.BeschränkungsID = RB.BeschränkungsID
+Where B.Name LIKE "Laktose"
+
+[Task] Mindestens 3 weitere Querys  überlegen
+  1) Die gesamte Umsatz von allen Bestellungen pro Kunde:
+	Select K.VORNAME,
+       	       K.NACHNAME,
+       	       SUM(b.RECHNUNGSBETRAG)
+	from kunde k
+	JOIN bestellung b ON b.KUNDENNR = k.KUNDENNR
+	Group by K.VORNAME, K.NACHNAME
+
 
 
 
