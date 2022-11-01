@@ -127,6 +127,14 @@ Where B.Name LIKE "Laktose"
 	from lieferant 		L
 	JOIN zutat	   		Z  ON Z.LIEFERANT = L.LIEFERANTENNR
 	JOIN rezeptzutat	RZ ON RZ.zutatID = Z.zutatID
+	
+3) Auswahl aller Bestellungen eines Kunden:
+	Select k.VORNAME,
+	       k.NACHNAME,
+               r.Name
+	From bestellung	         b
+	JOIN kunde		 k ON B.KUNDENNR = k.KUNDENNR
+	JOIN rezept		 r ON b.RezeptID = r.RezeptID
 
 
 
