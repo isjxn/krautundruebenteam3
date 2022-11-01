@@ -58,12 +58,10 @@ Where Z.BEZEICHNUNG LIKE "Tomate"
 
 
 [Task] Query. Auswahl aller Zutaten, die bisher keinem Rezept zugeordnet sind:
-Select R.Name,
-       Z.BEZEICHNUNG
-from rezept 	        	R
-LEFT JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
-LEFT JOIN zutat 		Z  ON RZ.zutatID = Z.zutatID
-Where Z.BEZEICHNUNG IS NULL
+SELECT zutat.BEZEICHNUNG, rezeptzutat.rzID
+FROM zutat
+LEFT JOIN rezeptzutat  ON rezeptzutat.zutatID = zutat.zutatID
+WHERE rezeptzutat.rzID IS NULL
 
 
 [Task] Query. Auswahl aller Rezepte, die weniger als fünf Zutaten enthalten: 
