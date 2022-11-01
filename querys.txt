@@ -1,5 +1,18 @@
 Querys hier.
 
+[Task] Query. die Löschung seiner Daten verlangt.
+UPDATE kunde
+SET NACHNAME = "DSGVO",
+VORNAME = "DSGVO",
+GEBURTSDATUM = "1970-01-01",
+STRASSE = "DSGVO",
+HAUSNR = "0",
+PLZ = "0",
+ORT = "DSGVO",
+TELEFON = "0000-000000",
+EMAIL = "DSGVO"
+WHERE KUNDENNR = 2609;
+
 [Task] Query. Auswahl aller Rezepte, die eine bestimmte Kalorienmenge nicht überschreiten
 SELECT rezept.Name, SUM(zutat.KALORIEN*rezeptzutat.menge)
 FROM rezept
