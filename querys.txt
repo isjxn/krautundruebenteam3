@@ -66,36 +66,30 @@ LEFT JOIN zutat 		Z  ON RZ.zutatID = Z.zutatID
 Where Z.BEZEICHNUNG IS NULL
 
 
-[Task] Query. Auswahl aller Rezepte, die weniger als fünf Zutaten enthalten: MUSS NOCH GEÄNDERT SEIN!(NULL Daten löschen)
+[Task] Query. Auswahl aller Rezepte, die weniger als fünf Zutaten enthalten: 
 Select 
-      CASE WHEN  COUNT(Z.BEZEICHNUNG) < 5 THEN R.Name
-       Else NULL
-       End
+R.Name      
 from rezept 	        R
 JOIN rezeptzutat 	RZ ON R.RezeptID = RZ.rzID
 JOIN zutat 		Z  ON RZ.zutatID = Z.zutatID
 Group by R.Name
+HAVING COUNT(Z.BEZEICHNUNG) < 5
 
 
 
-[Task] Query. Auswahl aller Rezepte, die eine bestimmte Kalorienmenge nicht überschreiten: MUSS NOCH GEÄNDERT SEIN!(NULL Daten löschen)
+[Task] Query. Auswahl aller Rezepte, die eine bestimmte Kalorienmenge nicht überschreiten: 
 Select 
-R.Name,
-CASE WHEN Z.KALORIEN < 300 Then "300 kalorien nicht überschritten"
-ELSE NULL
-END
+R.Name
 from rezept					R 
 JOIN rezeptzutat 		RZ ON R.RezeptID = RZ.rzID
 JOIN zutat 		        Z  ON RZ.zutatID = Z.zutatID
 Group by R.Name, Z.KALORIEN
+Having Z.KALORIEN < 300
 
-[Task] Query. Auswahl aller Rezepte, die weniger als fünf Zutaten enthalten und eine bestimmte Ernährungskategorie erfüllen: MUSS NOCH GEÄNDERT SEIN!(NULL Daten löschen)
+[Task] Query. Auswahl aller Rezepte, die weniger als fünf Zutaten enthalten und eine bestimmte Ernährungskategorie erfüllen: 
 
 Select 
-EK.Name,
-      CASE WHEN  COUNT(Z.BEZEICHNUNG) < 5 THEN R.Name
-      Else NULL
-      End
+R.Name
 from rezept 	       			R
 JOIN rezepternährungskategorie	REK ON REK.reID = R.RezeptID
 JOIN ernährungskategorie		EK	ON REK.ErnährungskategorieID = EK.ErnährungskategorieID
@@ -103,6 +97,7 @@ JOIN rezeptzutat 				RZ ON R.RezeptID = RZ.rzID
 JOIN zutat 						Z  ON RZ.zutatID = Z.zutatID
 Where EK.Name LIKE "Vegan"
 Group by R.Name
+HAVING COUNT(Z.BEZEICHNUNG) < 5
 
 
 [Task] Query. dass ein Kunde Auskunft seiner Daten nach DSGVO beantragt oder:
