@@ -133,21 +133,21 @@ Where B.Name LIKE "Laktose"
 	JOIN bestellung b ON b.KUNDENNR = k.KUNDENNR
 	Group by K.VORNAME, K.NACHNAME
 	
- 2) Zutaten pro Lieferant mit Menge:
- 	Select  L.LIEFERANTENNAME,
-		Z.BEZEICHNUNG,
-        	RZ.menge
-	from lieferant 		L
-	JOIN zutat	   		Z  ON Z.LIEFERANT = L.LIEFERANTENNR
-	JOIN rezeptzutat	RZ ON RZ.zutatID = Z.zutatID
+ 2) Rezept pro Ernährungskategorie und beschränkungen:
+ 	Select R.Name, EK.Name, B.Name
+	From rezept				R
+	Inner join rezepternährungskategorie	RE ON R.reID = RE.reID
+	JOIN ernährungskategorie		EK ON RE.ErnährungskategorieID = EK.ErnährungskategorieID
+	Inner Join rezeptbeschränkungen		RB ON R.rbID = RB.rbID
+	JOIN beschränkung			B  ON RB.BeschränkungsID = B.BeschränkungsID
 	
-3) Auswahl aller Bestellungen eines Kunden:
-	Select k.VORNAME,
-	       k.NACHNAME,
-               r.Name
-	From bestellung	         b
-	JOIN kunde		 k ON B.KUNDENNR = k.KUNDENNR
-	JOIN rezept		 r ON b.RezeptID = r.RezeptID
+3) Ausfall alle rezepten, die ein beschränkung haben:
+	Select R.Name
+	from rezeptbeschränkungen   RB 
+	Right JOIN rezept 	    R ON R.rbID = RB.rbID 
+	Where RB.rbID IS NOT NULL
+	
+	
 
 
 
